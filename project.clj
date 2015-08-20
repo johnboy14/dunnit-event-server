@@ -14,6 +14,7 @@
                  [liberator "0.13"]
                  [cheshire "5.5.0"]
                  [com.taoensso/carmine "2.11.1"]
+                 [org.clojure/data.codec "0.1.0"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]]
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.4"]
                                   [midje "1.7.0"]
