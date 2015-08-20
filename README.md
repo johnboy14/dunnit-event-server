@@ -8,9 +8,9 @@
 lein repl
 
 #### Then issue the go command to start processing events
-'''
+```
 user => (go)
-'''
+```
 
 #### Using POSTMAN or CURL use the following dummy event taken from the googles Push documentation https://developers.google.com/gmail/api/guides/push
 ```
