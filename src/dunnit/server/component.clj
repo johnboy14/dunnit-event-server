@@ -6,7 +6,7 @@
   comp/Lifecycle
   (start [component]
     (println "Starting web server on port " (:port config))
-    (let [server (run-server handler config)]
+    (let [server (run-server (:notification-route-handler handler) config)]
       (assoc component :server server)))
   (stop [component]
     (println "Shutting down web server on port " (:port config))
@@ -14,5 +14,5 @@
       (server)
       component)))
 
-(defn new-web-server [port handler]
-  (map->WebServer {:config {:port port} :handler handler}))
+(defn new-web-server [port]
+  (map->WebServer {:config {:port port}}))
