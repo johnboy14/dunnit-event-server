@@ -5,10 +5,9 @@
             [cheshire.core :as ch]))
 
 (defn decode-msg [msg]
-  (ch/parse-string
-    (->> (b64/decode (.getBytes (:data (:message msg))))
-      (map char)
-      (reduce str)) true))
+  (->> (b64/decode(.getBytes (:data (:message msg))))
+       (map char)
+       (reduce str)))
 
 (defrecord SwitchBoard [notification-chan push-chan]
   comp/Lifecycle
