@@ -15,7 +15,7 @@
   comp/Lifecycle
   (start [component]
     (println "Starting Redis")
-    (let [config {:pool {} :spec {}}]
+    (let [config {:pool {} :spec {:uri "redis://h:pdfb030ba8v6a76snvhso5m0eda@ec2-54-217-234-142.eu-west-1.compute.amazonaws.com:9849"}}]
       (start-pushing config (:push-chan push-chan)))
     component)
   (stop [component]
