@@ -8,6 +8,7 @@
             [dunnit.redis.component :as redis]
             [clojure.core.async :refer [chan]]))
 
+
 (defn new-system []
   (component/system-map
    :notification-chan (channels/new-channel :notification-chan 10)
@@ -23,3 +24,15 @@
                                   {:push-chan :push-chan})
    :web-server (component/using (server/new-web-server 8080)
                                 {:handler :notification-router})))
+
+(def system nil)
+
+(defn init
+  "Constructs the current development system."
+  []
+  (alter-var-root #'system
+                  (constantly (new-system))))
+
+(defn -main [& args]
+  (init)
+  (alter-var-root #'system component/start))

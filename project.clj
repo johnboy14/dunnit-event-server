@@ -22,4 +22,5 @@
                                   [ring/ring-devel "1.3.1"]
                                   [midje "1.7.0"]]
                    :plugins [[lein-midje "3.1.3"]]
-                   :source-paths ["dev"]}})
+                   :source-paths ["dev"]}}
+  :main dunnit.system)
