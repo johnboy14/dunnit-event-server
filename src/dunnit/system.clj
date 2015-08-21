@@ -9,7 +9,7 @@
             [clojure.core.async :refer [chan]]))
 
 
-(defn new-system []
+(defn new-system [port]
   (component/system-map
    :notification-chan (channels/new-channel :notification-chan 10)
    :push-chan (channels/new-channel :push-chan 10)
@@ -22,17 +22,18 @@
                                           {:notification-chan :notification-chan})
    :redis-client (component/using (redis/new-redis-client {})
                                   {:push-chan :push-chan})
-   :web-server (component/using (server/new-web-server 8080)
+   :web-server (component/using (server/new-web-server port)
                                 {:handler :notification-router})))
 
 (def system nil)
 
 (defn init
   "Constructs the current development system."
-  []
+  [port]
   (alter-var-root #'system
-                  (constantly (new-system))))
+                  (constantly (new-system port))))
 
 (defn -main [& args]
-  (init)
+  (println (type (first args)))
+  (init (read-string (first args)))
   (alter-var-root #'system component/start))
